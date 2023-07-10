@@ -8,6 +8,8 @@ defmodule Tiktoken.Native do
     crate: "tiktoken",
     base_url: "https://github.com/Betafi/tiktoken/releases/download/v#{version}",
     force_build: System.get_env("RUSTLER_PRECOMPILATION_TIKTOKEN_BUILD") in ["1", "true"],
+    targets:
+      Enum.uniq(["aarch64-unknown-linux-musl" | RustlerPrecompiled.Config.default_targets()]),
     version: version
 
   def encoding_for_model(_model), do: err()
