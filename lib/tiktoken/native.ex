@@ -1,7 +1,14 @@
 defmodule Tiktoken.Native do
   @moduledoc false
 
-  use Rustler, otp_app: :tiktoken, crate: :tiktoken
+  version = Mix.Project.config()[:version]
+
+  use RustlerPrecompiled,
+    otp_app: :tiktoken,
+    crate: "tiktoken",
+    base_url: "https://github.com/Betafi/tiktoken/releases/download/v#{version}",
+    force_build: System.get_env("RUSTLER_PRECOMPILATION_TIKTOKEN_BUILD") in ["1", "true"],
+    version: version
 
   def encoding_for_model(_model), do: err()
 
