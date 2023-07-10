@@ -43,6 +43,12 @@ jobs:
         toolchain: stable
         target: ${{ matrix.job.target }}
 
+    - name: Install cross from GitHub
+      if: ${{ matrix.job.use-cross && matrix.job.target == 'aarch64-unknown-linux-musl' }}
+      shell: bash
+      run: |
+        cargo install --git https://github.com/cross-rs/cross --rev 4deac830a4992a70f7cb070eda38d5ff7cfcbf86 || echo 'Already installed'
+
     - name: Build the project
       id: build-crate
       uses: philss/rustler-precompiled-action@v1.0.1
