@@ -49,6 +49,10 @@ jobs:
       run: |
         cargo install --git https://github.com/cross-rs/cross --rev 4deac830a4992a70f7cb070eda38d5ff7cfcbf86 || echo 'Already installed'
 
+    - uses: actions/setup-python@v4
+      with:
+        python-version: '3.10'
+
     - name: Build the project
       id: build-crate
       uses: philss/rustler-precompiled-action@v1.0.1
