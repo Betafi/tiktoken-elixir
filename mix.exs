@@ -40,7 +40,7 @@ defmodule Tiktoken.MixProject do
 
   defp package do
     [
-      files: ~w(lib priv .formatter.exs mix.exs README* LICENSE* native),
+      files: ~w(lib priv .formatter.exs mix.exs README* LICENSE* native checksum-*.exs),
       licenses: ["MIT"],
       links: %{"GitHub" => "https://github.com/connorjacobsen/tiktoken-elixir"}
     ]
